@@ -70,22 +70,22 @@ public class Main {
     }
 
 
-    static void convert(String answer, Scanner scanner) {
+    static void convert(String bases, Scanner scanner) {
 
-        String[] bases = answer.split(" ");
+        String[] base = bases.split(" ");
         while(true){
-            System.out.println("Enter number in base " + bases[0] + " to convert to base " + bases[1] + " (To go back type /back)");
+            System.out.println("Enter number in base " + base[0] + " to convert to base " + base[1] + " (To go back type /back)");
             String number = scanner.nextLine();
             if (number.equals("/back"))
                 return;
             String[] splitNumber = number.split("\\."); //split the fractional number in integer and fractional part
-            BigInteger decimal = toDecimal(new BigInteger(bases[0]), splitNumber[0]); //convert the integer part to decimal
+            BigInteger decimal = toDecimal(new BigInteger(base[0]), splitNumber[0]); //convert the integer part to decimal
             String baseFraction = "";
             if(splitNumber.length == 2) { //if fractional part is present it is converted to decimal and then to base
-                double decimalFraction = toDecimalFraction(Double.parseDouble(bases[0]), splitNumber[1]);
-                baseFraction = fromDecimalFraction(Double.valueOf(bases[1]), decimalFraction);
+                double decimalFraction = toDecimalFraction(Double.parseDouble(base[0]), splitNumber[1]);
+                baseFraction = fromDecimalFraction(Double.valueOf(base[1]), decimalFraction);
             }
-            String result = fromDecimal(new BigInteger(bases[1]), decimal);
+            String result = fromDecimal(new BigInteger(base[1]), decimal);
             System.out.println("Conversion result: " + result + baseFraction);
         }
     }
